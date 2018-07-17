@@ -1,7 +1,7 @@
 #include "arcx.h"
 #include "dict.h"
 #include "list.h"
-#include "decompresors.h"
+#include "decompressors.h"
 #include <stdlib.h>
 
 uint32_t read_int(FILE *file)

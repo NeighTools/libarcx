@@ -2,7 +2,7 @@
 #define DECOMPRESSORS_H
 
 #include "arcx.h"
-#include <stdlib.h>
+#include <stddef.h>
 
 typedef size_t (*Decompressor)(void *input_buffer, size_t input_size, void *output_buffer, size_t output_size);
 
@@ -14,10 +14,11 @@ typedef size_t (*Decompressor)(void *input_buffer, size_t input_size, void *outp
 
 DEF_DECOMPRESSOR(uncompressed);
 DEF_DECOMPRESSOR(zstd);
+DEF_DECOMPRESSOR(lz4);
 
 Decompressor DECOMPRESSORS[MAX_COMPRESSION_TYPE] = {
 	INIT_DECOMPRESSOR(uncompressed),
-	NULL_DECOMPRESSOR,
+	INIT_DECOMPRESSOR(lz4),
 	INIT_DECOMPRESSOR(zstd),
 	NULL_DECOMPRESSOR,
 	NULL_DECOMPRESSOR,

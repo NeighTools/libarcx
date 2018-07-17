@@ -13,15 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\compressors">
-      <UniqueIdentifier>{0416cd9c-89a5-48ed-a41a-4af02fc743ed}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="arcx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="decompresors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dict.h">
@@ -30,21 +24,21 @@
     <ClInclude Include="list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="decompressors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="arcx.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="uncompressed.c">
-      <Filter>Source Files\compressors</Filter>
-    </ClCompile>
-    <ClCompile Include="zstd.c">
-      <Filter>Source Files\compressors</Filter>
-    </ClCompile>
     <ClCompile Include="dict.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="list.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="decompressors.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

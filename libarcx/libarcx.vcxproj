@@ -28,16 +28,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="arcx.h" />
-    <ClInclude Include="decompresors.h" />
+    <ClInclude Include="decompressors.h" />
     <ClInclude Include="dict.h" />
     <ClInclude Include="list.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="arcx.c" />
+    <ClCompile Include="decompressors.c" />
     <ClCompile Include="dict.c" />
     <ClCompile Include="list.c" />
-    <ClCompile Include="uncompressed.c" />
-    <ClCompile Include="zstd.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dll.def" />
@@ -155,7 +154,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>libzstd_static_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libzstd_static_$(PlatformTarget).lib;liblz4_static_$(PlatformTarget).lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>dll.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
@@ -184,7 +183,7 @@
       <ModuleDefinitionFile>dll.def</ModuleDefinitionFile>
     </Link>
     <Lib>
-      <AdditionalDependencies>libzstd_static_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libzstd_static_$(PlatformTarget).lib;liblz4_static_$(PlatformTarget).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <ModuleDefinitionFile>
@@ -213,7 +212,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>dll.def</ModuleDefinitionFile>
-      <AdditionalDependencies>libzstd_static_x86.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libzstd_static_$(PlatformTarget).lib;liblz4_static_$(PlatformTarget).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -234,7 +233,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libzstd_static_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libzstd_static_$(PlatformTarget).lib;liblz4_static_$(PlatformTarget).lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>dll.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
@@ -258,7 +257,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>dll.def</ModuleDefinitionFile>
-      <AdditionalDependencies>libzstd_static_x86.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libzstd_static_$(PlatformTarget).lib;liblz4_static_$(PlatformTarget).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static_Release|Win32'">
@@ -285,7 +284,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>libzstd_static_x86.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libzstd_static_$(PlatformTarget).lib;liblz4_static_$(PlatformTarget).lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalOptions>/WHOLEARCHIVE %(AdditionalOptions)</AdditionalOptions>
     </Lib>
