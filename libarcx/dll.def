@@ -1,0 +1,5 @@
+EXPORTS
+ARCX_open
+ARCX_close
+ARCX_read_file
+ARCX_read_chunk
