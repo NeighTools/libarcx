@@ -38,6 +38,10 @@ ArcXContainer *ARCX_open(const char *file)
 
 	ArcXContainer *result = malloc(sizeof(ArcXContainer));
 
+	size_t len = strlen(file) + 1;
+	result->file_location = malloc(sizeof(char) * len);
+	strcpy(result->file_location, file);
+
 	fread(&result->version, 2, 1, stream);
 	fread(&result->header_offset, 8, 1, stream);
 	_fseeki64(stream, result->header_offset, SEEK_SET);
@@ -100,15 +104,13 @@ ArcXContainer *ARCX_open(const char *file)
 
 	dict_free(dict);
 
-	result->file_handler = stream;
+	fclose(stream);
 
 	return result;
 }
 
 void ARCX_close(ArcXContainer *container)
 {
-	fclose(container->file_handler);
-
 	for (uint64_t i = 0; i < container->file_count; i++)
 	{
 		ArcXFile *file = &container->files[i];
@@ -125,18 +127,26 @@ void ARCX_close(ArcXContainer *container)
 	}
 
 	free(container->chunks);
+	free(container->file_location);
 	free(container);
 }
 
 void *ARCX_read_chunk(ArcXChunk *chunk)
 {
+	FILE *stream = fopen(chunk->container->file_location, "rb");
+
+	if (stream == NULL)
+		return NULL;
+
 	void *raw_data = malloc(chunk->compressed_length);
-	_fseeki64(chunk->container->file_handler, chunk->offset, SEEK_SET);
-	fread(raw_data, 1, chunk->compressed_length, chunk->container->file_handler);
+	_fseeki64(stream, chunk->offset, SEEK_SET);
+	fread(raw_data, 1, chunk->compressed_length, stream);
 
 	void *output = malloc(chunk->uncompressed_length);
 	get_decompressor(chunk)(raw_data, chunk->compressed_length, output, chunk->uncompressed_length);
 	free(raw_data);
+
+	fclose(stream);
 
 	return output;
 }
